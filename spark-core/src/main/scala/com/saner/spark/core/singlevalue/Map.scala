@@ -1,4 +1,4 @@
-package com.saner.spark.core.chapter01
+package com.saner.spark.core.singlevalue
 
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
