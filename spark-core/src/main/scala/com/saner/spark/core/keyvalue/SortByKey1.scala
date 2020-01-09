@@ -9,7 +9,7 @@ object SortByKey1 {
     }
 
     def main(args: Array[String]): Unit = {
-        val conf: SparkConf = new SparkConf().setAppName("FoldByKey").setMaster("local[2]")
+        val conf: SparkConf = new SparkConf().setAppName("SortByKey1").setMaster("local[2]")
         val sc: SparkContext = new SparkContext(conf)
         //        val rdd = sc.parallelize(List(("a", 3), ("a", 2), ("c", 4), ("b", 3), ("c", 6), ("c", 8)), 2)
         //        val rdd2: RDD[(String, Int)] = rdd.sortByKey(ascending = false)

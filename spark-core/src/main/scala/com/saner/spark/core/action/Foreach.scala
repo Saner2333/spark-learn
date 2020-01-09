@@ -5,7 +5,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object Foreach {
     def main(args: Array[String]): Unit = {
-        val conf: SparkConf = new SparkConf().setAppName("CountByKey").setMaster("local[2]")
+        val conf: SparkConf = new SparkConf().setAppName("Foreach").setMaster("local[2]")
         val sc: SparkContext = new SparkContext(conf)
         val list1 = List(30, 50, 70, 60, 10, 20)
         val rdd1: RDD[(Int, Int)] = sc.parallelize(list1).map((_,1))

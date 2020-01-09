@@ -5,7 +5,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 
 object Pratice {
     def main(args: Array[String]): Unit = {
-        val conf: SparkConf = new SparkConf().setAppName("FoldByKey").setMaster("local[2]")
+        val conf: SparkConf = new SparkConf().setAppName("Pratice").setMaster("local[2]")
         val sc: SparkContext = new SparkContext(conf)
         val lineRDD: RDD[String] = sc.textFile("d:/agent.log")
         //        时间戳，省份，城市，用户，广告
