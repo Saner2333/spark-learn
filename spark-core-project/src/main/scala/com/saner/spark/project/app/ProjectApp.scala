@@ -1,13 +1,14 @@
 package com.saner.spark.project.app
 
 import com.saner.spark.project.bean.{CategoryCountInfo, UserVisitAction}
+import org.apache.hadoop.yarn.webapp.hamlet.HamletSpec.THEAD
 import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 object ProjectApp {
 
     def main(args: Array[String]): Unit = {
-        val conf: SparkConf = new SparkConf().setAppName("ProjectApp").setMaster("local[2]")
+        val conf: SparkConf = new SparkConf().setAppName("ProjectApp").setMaster("local[10]")
         val sc: SparkContext = new SparkContext(conf)
         //读取数据
         val sourceRDD: RDD[String] = sc.textFile("d:/user_visit_action.txt")
@@ -32,34 +33,33 @@ object ProjectApp {
 
 
         //需求1
-        val categoryCountInfoArray: Array[CategoryCountInfo] = CategoryTopApp.statCategoryTop10(sc, userVisitActionRDD)
+//        val categoryCountInfoArray: Array[CategoryCountInfo] = CategoryTopApp.statCategoryTop10(sc, userVisitActionRDD)
 
         //需求2
         //        CategoryTop10SessionApp.calcCategorySessionTop10(sc,categoryCountInfoArray,userVisitActionRDD)
-        CategoryTop10SessionApp.calcCategorySessionTop10_1(sc, categoryCountInfoArray, userVisitActionRDD)
-        Thread.sleep(1000000)
-
-
-
+//        CategoryTop10SessionApp.calcCategorySessionTop10_3(sc, categoryCountInfoArray, userVisitActionRDD)
         //需求3
+        PageConversionApp.statPageConversionRate(sc, userVisitActionRDD, "1,2,3,4,5,6,7")
+
 
     }
 
 }
 
 /*
-问题: 内存溢出
+问题: toList内存溢出
 
 解决方案1:
     使用spark的排序  rdd.sortBy  sortByKey
     问题: 针对整个rdd排序
 
-        每个cid取10个
-        如果RDD只有一个cid 排序取前10
+解决方案2：
+    每个cid取10个
+    如果RDD只有一个cid 排序取前10
 
     好处: 不会内存溢出, 任务一定能跑下来
     缺点: 每个cid都会起一个job, 对资源的消耗比较大
-
+解决方案3：
 
 
 1.过滤出来前10的品类id的点击记录
