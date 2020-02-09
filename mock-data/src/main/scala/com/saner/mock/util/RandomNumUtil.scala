@@ -1,4 +1,4 @@
-package com.atguigu.mock.util
+package com.saner.mock.util
 
 import java.util.Random
 

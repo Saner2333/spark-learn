@@ -1,9 +1,9 @@
-package com.atguigu.mock
+package com.saner.mock
 
 import java.util.Properties
 
-import com.atguigu.mock.bean.CityInfo
-import com.atguigu.mock.util.{RandomNumUtil, RandomOptions}
+import com.saner.mock.bean.CityInfo
+import com.saner.mock.util.{RandomNumUtil, RandomOptions}
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
 import scala.collection.mutable.ArrayBuffer

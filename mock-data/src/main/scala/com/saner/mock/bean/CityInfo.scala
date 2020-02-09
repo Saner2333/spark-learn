@@ -1,4 +1,4 @@
-package com.atguigu.mock.bean
+package com.saner.mock.bean
 
 /**
   * 城市表
