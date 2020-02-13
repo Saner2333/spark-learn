@@ -1,6 +1,7 @@
 package com.saner.realtime.app
 
 import com.saner.realtime.bean.AdsInfo
+import com.saner.realtime.util.RedisUtil
 import org.apache.spark.streaming.dstream.DStream
 import org.json4s.jackson.JsonMethods
 import redis.clients.jedis.Jedis
@@ -27,7 +28,7 @@ object AreaAdsClickTop3App extends APP {
 
         resultStream.print(1000)
         // 4. 把数据存储到redis中
-        /*resultStream.foreachRDD(rdd => {
+        resultStream.foreachRDD(rdd => {
             rdd.foreachPartition((it: Iterator[((String, String), List[(String, Int)])]) => {
                 // 建立到redis的连接
                 val client: Jedis = RedisUtil.getJedisClient
@@ -47,7 +48,7 @@ object AreaAdsClickTop3App extends APP {
                 // 关闭到redis的连接
                 client.close()
             })
-        })*/
+        })
     }
 
 }
